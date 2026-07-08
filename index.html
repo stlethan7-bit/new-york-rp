@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEW YORK RP FR | Guide du Serveur</title>
+    <title>NEW YORK RP FR | Guide Interactif</title>
     <style>
         /* --- Styles Généraux --- */
         * {
@@ -19,123 +19,103 @@
             line-height: 1.6;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
         .container {
-            width: 85%;
-            max-width: 1200px;
+            width: 90%;
+            max-width: 1000px;
             margin: 0 auto;
+            padding: 40px 0;
         }
 
-        /* --- Barre de Navigation --- */
+        /* --- En-tête --- */
         header {
-            background-color: #121722;
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 2px solid #1a2233;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: #1e90ff;
-        }
-
-        .logo span {
-            color: #e74c3c;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 20px;
-        }
-
-        nav ul li a {
-            font-weight: 600;
-            font-size: 15px;
-            transition: color 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: #1e90ff;
-        }
-
-        /* --- Section Accueil (Hero) --- */
-        #accueil {
-            padding: 120px 0;
             text-align: center;
-            background: linear-gradient(rgba(11, 14, 20, 0.85), rgba(11, 14, 20, 0.98)), url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=1920') no-repeat center center/cover;
+            padding: 60px 0 20px 0;
+            background: linear-gradient(rgba(11, 14, 20, 0.8), rgba(11, 14, 20, 1)), url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=1920') no-repeat center center/cover;
             border-bottom: 2px solid #1a2233;
         }
 
-        #accueil h1 {
-            font-size: 52px;
+        h1 {
+            font-size: 45px;
             font-weight: 900;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
         }
 
-        #accueil p {
-            font-size: 18px;
-            max-width: 700px;
-            margin: 0 auto 40px auto;
+        h1 span {
+            color: #1e90ff;
+        }
+
+        .subtitle {
             color: #a0aec0;
+            font-size: 18px;
+            margin-bottom: 30px;
         }
 
-        .btn-discord {
-            background-color: #5865F2;
-            color: white;
-            padding: 15px 35px;
-            font-weight: 700;
-            border-radius: 5px;
-            font-size: 16px;
-            display: inline-block;
-            transition: background 0.3s, transform 0.2s;
-        }
-
-        .btn-discord:hover {
-            background-color: #4752c4;
-            transform: translateY(-2px);
-        }
-
-        /* --- Sections de Contenu --- */
-        .section {
-            padding: 80px 0;
-            border-bottom: 1px solid #1a2233;
-        }
-
-        .section-title {
-            font-size: 32px;
-            font-weight: 800;
+        /* --- Zone des Boutons --- */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
             margin-bottom: 40px;
-            text-align: center;
-            position: relative;
         }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 4px;
+        .tab-btn {
+            background-color: #121722;
+            color: #a0aec0;
+            border: 2px solid #1a2233;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            border-color: #1e90ff;
+            color: #fff;
+        }
+
+        .tab-btn.active {
             background-color: #1e90ff;
-            margin: 10px auto 0 auto;
-            border-radius: 2px;
+            color: #fff;
+            border-color: #1e90ff;
+            box-shadow: 0 4px 15px rgba(30, 144, 255, 0.4);
+        }
+
+        /* --- Zone d'affichage du contenu --- */
+        .content-box {
+            background-color: #121722;
+            border: 1px solid #1a2233;
+            border-radius: 12px;
+            padding: 40px;
+            min-height: 300px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* --- Styles Intérieurs du Contenu --- */
+        h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #fff;
+            border-left: 4px solid #1e90ff;
+            padding-left: 15px;
+        }
+
+        p {
+            color: #cbd5e0;
+            font-size: 16px;
+            margin-bottom: 20px;
         }
 
         .highlight {
@@ -146,160 +126,167 @@
             border-radius: 3px;
         }
 
-        /* --- Grilles et Cartes --- */
-        .grid {
+        /* Grille explicative */
+        .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
         }
 
-        .card {
-            background-color: #121722;
-            padding: 30px;
-            border-radius: 8px;
-            border: 1px solid #1a2233;
-        }
-
-        .card h3 {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: #1e90ff;
-        }
-
-        /* --- Liste ordonnée (Étapes) --- */
-        .steps {
-            list-style: none;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .steps li {
-            background-color: #121722;
-            margin-bottom: 15px;
+        .info-card {
+            background-color: #1a2233;
             padding: 20px;
             border-radius: 8px;
-            border-left: 4px solid #ffcc00;
-            font-size: 16px;
+            border: 1px solid #2d3748;
         }
 
-        .steps li strong {
-            color: #ffcc00;
+        .info-card h4 {
+            color: #1e90ff;
+            margin-bottom: 10px;
             font-size: 18px;
-            display: block;
-            margin-bottom: 5px;
         }
 
-        /* --- Footer --- */
+        /* Gros bouton d'action */
+        .action-btn {
+            display: inline-block;
+            background-color: #5865F2;
+            color: #fff;
+            padding: 15px 40px;
+            font-weight: bold;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: background 0.2s;
+        }
+
+        .action-btn:hover {
+            background-color: #4752c4;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         footer {
-            background-color: #080b10;
-            padding: 30px 0;
             text-align: center;
-            color: #718096;
+            padding: 40px 0;
+            color: #4a5568;
             font-size: 14px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Barre de Navigation -->
     <header>
-        <div class="container nav">
-            <div class="logo">NEW YORK<span> RP FR</span></div>
-            <nav>
-                <ul>
-                    <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="#fonctionnement">Comment ça marche</a></li>
-                    <li><a href="#discord-summary">Résumé du Discord</a></li>
-                    <li><a href="#recrutement">Se faire recruter</a></li>
-                </ul>
-            </nav>
-        </div>
+        <h1>NEW YORK<span> RP FR</span></h1>
+        <div class="subtitle">Cliquez sur les boutons ci-dessous pour tout comprendre et vous adapter au serveur.</div>
     </header>
 
-    <!-- Accueil -->
-    <section id="accueil">
-        <div class="container">
-            <h1>NEW YORK RP FR</h1>
-            <p>Tout comprendre sur le fonctionnement de notre ville, la structure de notre Discord et la méthode pour nous rejoindre rapidement.</p>
-            <a href="https://discord.gg/RMbDSbTsc" target="_blank" class="btn-discord">REJOINDRE LE DISCORD</a>
+    <div class="container">
+        
+        <!-- LES BOUTONS INTERACTIFS -->
+        <div class="nav-buttons">
+            <button class="tab-btn active" onclick="openTab('concept')">🎭 Le Concept du RP</button>
+            <button class="tab-btn" onclick="openTab('discord')">📢 Guide du Discord</button>
+            <button class="tab-btn" onclick="openTab('recrutement')">💼 Se faire Recruter</button>
         </div>
-    </section>
 
-    <!-- Comment marche le RP -->
-    <section id="fonctionnement" class="section">
-        <div class="container">
-            <h2 class="section-title">Comment marche notre RP ?</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>🎭 Choisissez votre camp</h3>
-                    <p>Dans notre simulation, vous incarnez le personnage de votre choix. Vous pouvez opter pour la légalité en travaillant pour les services publics ou monter une entreprise, ou bien choisir l'illégalité au sein de gangs ou d'organisations criminelles.</p>
-                </div>
-                <div class="card">
-                    <h3>📢 Les Sessions de jeu</h3>
-                    <p>Le serveur fonctionne par sessions planifiées. Les horaires d'ouverture de la ville sont partagés à l'avance. Le respect des règles de comportement et de fair-play est <span class="highlight">OBLIGATOIRE</span> dès que vous êtes en ville.</p>
-                </div>
-                <div class="card">
-                    <h3>🔧 Évolution de votre personnage</h3>
-                    <p>Chaque scène vécue compte. Vous accumulez de l'expérience en jeu, bâtissez vos contacts et gagnez de l'argent afin de faire progresser votre statut social, votre entreprise ou votre influence dans les quartiers.</p>
+        <!-- CONTENU DU SITE (S'affiche selon le bouton cliqué) -->
+        <div class="content-box">
+            
+            <!-- ONGLET 1 : LE CONCEPT -->
+            <div id="concept" class="tab-content active">
+                <h2>Comprendre le fonctionnement du RP</h2>
+                <p>Bienvenue sur NEW YORK RP FR. Notre serveur est basé sur une expérience <strong>Serious RP</strong> immersive dans un cadre américain réaliste. Vous créez votre personnage et écrivez votre propre histoire.</p>
+                
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h4>⚖️ Fair-Play & Respect</h4>
+                        <p>Le but premier est de construire des scènes de qualité. Perdre une action fait partie du jeu. Le respect total des règles est <span class="highlight">OBLIGATOIRE</span>.</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>⏱️ Sessions Planifiées</h4>
+                        <p>La ville ouvre ses portes lors de sessions précises. Les horaires et l'état d'ouverture du serveur sont annoncés à l'avance pour rassembler le maximum de joueurs.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Résumé du Discord -->
-    <section id="discord-summary" class="section" style="background-color: #0d121b;">
-        <div class="container">
-            <h2 class="section-title">Guide & Résumé de notre Discord</h2>
-            <p style="text-align: center; max-width: 800px; margin: -20px auto 40px auto; color: #a0aec0;">
-                Notre serveur Discord est organisé de manière claire pour que vous trouviez tout ce dont vous avez besoin en un coup d'œil.
-            </p>
-            <div class="grid">
-                <div class="card">
-                    <h3>📌 Salons d'Information</h3>
-                    <p><strong>#annonces & #reglement :</strong> Les espaces indispensables. Vous y trouverez les horaires des sessions, les mises à jour majeures du serveur, ainsi que les lois à respecter obligatoirement.</p>
-                </div>
-                <div class="card">
-                    <h3>🎭 Salons de Rôles & Identité</h3>
-                    <p><strong>#choix-roles :</strong> Dès votre arrivée, ce salon vous permet de cocher vos préférences pour débloquer les accès citoyens, légaux ou criminels selon le type de jeu qui vous intéresse.</p>
-                </div>
-                <div class="card">
-                    <h3>🎟️ Salons d'Entraide (Tickets)</h3>
-                    <p><strong>#support-ticket :</strong> Un salon dédié pour ouvrir un ticket privé avec le Staff. Idéal pour poser une question, signaler un problème ou soumettre un projet écrit.</p>
+            <!-- ONGLET 2 : LE DISCORD -->
+            <div id="discord" class="tab-content">
+                <h2>S'adapter à notre Discord</h2>
+                <p>Le serveur Discord est la base du projet hors de la ville. C'est ici que vous gérez la vie de votre personnage et restez informé des nouveautés.</p>
+                
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h4>📢 Les Salons d'Infos</h4>
+                        <p>Consultez régulièrement les salons <strong>#annonces</strong> et <strong>#reglement</strong> pour ne louper aucune session de jeu ou modification importante des lois.</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>🎭 Rôles & Accès</h4>
+                        <p>Rendez-vous dans le salon <strong>#choix-roles</strong> pour cocher vos préférences. Cela débloquera vos accès spécifiques (Citoyen, Légal ou Criminel).</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>🎟️ Le Support</h4>
+                        <p>Un problème ou une idée ? Le salon <strong>#support-ticket</strong> vous permet d'ouvrir un canal privé avec l'équipe du Staff pour recevoir de l'aide.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Comment on se fait recruter -->
-    <section id="recrutement" class="section">
-        <div class="container">
-            <h2 class="section-title">Comment se faire recruter ?</h2>
-            <p style="text-align: center; max-width: 600px; margin: -20px auto 40px auto; color: #a0aec0;">
-                Voici le parcours simple pour intégrer officiellement nos différentes branches de jeu :
-            </p>
-            <ul class="steps">
-                <li>
-                    <strong>Étape 1 : Rejoindre le Discord</strong>
-                    Utilisez le lien officiel pour entrer sur le serveur Discord et validez le règlement général de la communauté.
-                </li>
-                <li>
-                    <strong>Étape 2 : Choisir sa filière via les Salons</strong>
-                    Dirigez-vous vers nos salons d'orientation sur Discord pour spécifier si vous postulez pour les Services Publics (Légal) ou si vous lancez un Projet Criminel (Gang/Orga).
-                </li>
-                <li>
-                    <strong>Étape 3 : Ouvrir un Ticket de Candidature</strong>
-                    Ouvrez un ticket dans le salon d'assistance. Le Staff ou les responsables de la faction concernée vous guideront pour soumettre votre histoire (Lore) ou passer vos entretiens et tests.
-                </li>
-            </ul>
-        </div>
-    </section>
+            <!-- ONGLET 3 : LE RECRUTEMENT -->
+            <div id="recrutement" class="tab-content">
+                <h2>Comment se faire Recruter ?</h2>
+                <p>Pour intégrer officiellement une faction légale (comme l'NYPD ou les secours) ou pour faire valider votre groupe criminel (Bloods, Crips, organisations), tout se passe de manière simple :</p>
+                
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h4>1. Rejoindre & Lire</h4>
+                        <p>Entrez sur le serveur Discord et lisez attentivement les règles associées à la branche qui vous intéresse.</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>2. Ouvrir un Ticket</h4>
+                        <p>Allez dans le salon des tickets pour soumettre l'histoire de votre personnage (Lore) ou déposer votre candidature.</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>3. Passer les Tests</h4>
+                        <p>Les recruteurs de la faction ou le Staff prendront en charge votre demande pour effectuer vos tests ou validations.</p>
+                    </div>
+                </div>
 
-    <!-- Footer -->
+                <div style="text-align: center;">
+                    <a href="https://discord.gg/RMbDSbTsc" target="_blank" class="action-btn">Rejoindre le Discord maintenant</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <footer>
-        <div class="container">
-            <p>&copy; 2026 NEW YORK RP FR. Tous droits réservés. Serveur communautaire de jeu de rôle.</p>
-        </div>
+        <p>&copy; 2026 NEW YORK RP FR. Tous droits réservés.</p>
     </footer>
+
+    <!-- SCRIPT POUR LE FONCTIONNEMENT DES BOUTONS -->
+    <script>
+        function openTab(tabId) {
+            // Masquer tout le contenu
+            var contents = document.getElementsByClassName('tab-content');
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].classList.remove('active');
+            }
+
+            // Désactiver l'état actif de tous les boutons
+            var buttons = document.getElementsByClassName('tab-btn');
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove('active');
+            }
+
+            // Afficher le contenu sélectionné et activer le bon bouton
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
 
 </body>
 </html>
