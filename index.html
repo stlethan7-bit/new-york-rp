@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEW YORK RP FR | Serveur Serious RP</title>
+    <style>
+        /* --- Styles Généraux --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0b0e14;
+            color: #f5f6f7;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- Barre de Navigation --- */
+        header {
+            background-color: #121722;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid #1a2233;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #1e90ff;
+        }
+
+        .logo span {
+            color: #e74c3c;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #1e90ff;
+        }
+
+        /* --- Section Accueil (Hero) --- */
+        #accueil {
+            padding: 120px 0;
+            text-align: center;
+            background: linear-gradient(rgba(11, 14, 20, 0.85), rgba(11, 14, 20, 0.98)), url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=1920') no-repeat center center/cover;
+            border-bottom: 2px solid #1a2233;
+        }
+
+        #accueil h1 {
+            font-size: 52px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        #accueil p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+            color: #a0aec0;
+        }
+
+        .btn-discord {
+            background-color: #5865F2;
+            color: white;
+            padding: 15px 35px;
+            font-weight: 700;
+            border-radius: 5px;
+            font-size: 16px;
+            display: inline-block;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn-discord:hover {
+            background-color: #4752c4;
+            transform: translateY(-2px);
+        }
+
+        /* --- Sections de Contenu --- */
+        .section {
+            padding: 80px 0;
+            border-bottom: 1px solid #1a2233;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background-color: #1e90ff;
+            margin: 10px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* Surlignage */
+        .highlight {
+            background-color: #ffcc00;
+            color: #000;
+            padding: 2px 6px;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+
+        /* --- Grilles et Cartes --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: #121722;
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid #1a2233;
+            transition: border-color 0.3s;
+        }
+
+        .card:hover {
+            border-color: #1e90ff;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #1e90ff;
+        }
+
+        .card h3.red-title {
+            color: #e74c3c;
+        }
+
+        /* --- Liens internes --- */
+        .card-link {
+            display: inline-block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #5865F2;
+            transition: color 0.2s;
+        }
+
+        .card-link:hover {
+            color: #4752c4;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #080b10;
+            padding: 30px 0;
+            text-align: center;
+            color: #718096;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barre de Navigation -->
+    <header>
+        <div class="container nav">
+            <div class="logo">NEW YORK<span> RP FR</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#bases">Nos Bases</a></li>
+                    <li><a href="#discord-info">Le Discord</a></li>
+                    <li><a href="#factions">Factions</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Accueil -->
+    <section id="accueil">
+        <div class="container">
+            <h1>NEW YORK RP FR</h1>
+            <p>Découvrez une simulation américaine immersive et équilibrée. Que vous incarniez un citoyen honnête, un membre des forces de l'ordre ou un acteur de la pègre, votre destin se forge ici.</p>
+            <a href="https://discord.gg/RMbDSbTsc" target="_blank" class="btn-discord">REJOINDRE LE DISCORD</a>
+        </div>
+    </section>
+
+    <!-- Les Bases du RP -->
+    <section id="bases" class="section">
+        <div class="container">
+            <h2 class="section-title">Les Bases de notre RP</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🎭 Immersion Serious RP</h3>
+                    <p>Nous prônons un jeu de rôle réaliste et sérieux. Chaque personnage doit avoir une histoire cohérente, des ambitions logiques et simuler des réactions réalistes face au danger (Fear RP) ou à l'autorité.</p>
+                </div>
+                <div class="card">
+                    <h3>⚖️ Fair-Play Obligatoire</h3>
+                    <p>L'objectif sur notre serveur n'est pas de gagner chaque scène, mais de créer une interaction de qualité pour tous. Le respect du règlement est <span class="highlight">OBLIGATOIRE</span> pour le confort de la communauté.</p>
+                </div>
+                <div class="card">
+                    <h3>💰 Économie Réaliste</h3>
+                    <p>Le système financier du serveur est configuré pour refléter le coût de la vie américain. L'argent se mérite au travers des différents métiers légaux ou via l'économie souterraine contrôlée.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fonctionnement du Discord -->
+    <section id="discord-info" class="section" style="background-color: #0d121b;">
+        <div class="container">
+            <h2 class="section-title">Comment fonctionne notre Discord ?</h2>
+            <p style="text-align: center; max-width: 800px; margin: -20px auto 40px auto; color: #a0aec0;">
+                Le serveur Discord est le cœur opérationnel de NEW YORK RP FR. C'est là-bas que tout se passe en dehors de la ville.
+            </p>
+            <div class="grid">
+                <div class="card">
+                    <h3>📢 Les Annonces & Sessions</h3>
+                    <p>C'est dans les salons d'annonces que le staff communique les nouveautés, les mises à jour et les planifications des sessions de jeu pour réunir la communauté.</p>
+                </div>
+                <div class="card">
+                    <h3>📝 Demandes de Rôles & Salons</h3>
+                    <p>Une fois arrivé, passez par le salon de configuration des rôles pour accéder aux espaces qui vous intéressent (Citoyen, Légal, Criminel) et ouvrir vos salons de projets.</p>
+                </div>
+                <div class="card">
+                    <h3>🎟️ Système de Ticket / Support</h3>
+                    <p>Un problème en ville, une question sur le règlement ou un projet de gang à soumettre ? Ouvrez un ticket sur le Discord, notre équipe administrative vous prendra en charge rapidement.</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="https://discord.gg/RMbDSbTsc" target="_blank" class="card-link">Accéder directement aux salons Discord →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Factions -->
+    <section id="factions" class="section">
+        <div class="container">
+            <h2 class="section-title">L'Équilibre des Factions</h2>
+            <div class="grid">
+                <div class="card" style="border-left: 4px solid #1e90ff;">
+                    <h3>🔵 Le Secteur Légal & Public</h3>
+                    <p>Regroupe la gestion des entreprises de la ville et les services d'urgence. De l'agent de patrouille sur le terrain jusqu'aux cadres administratifs, ce secteur encadre la vie des citoyens honnêtes et la sécurité publique.</p>
+                </div>
+                <div class="card" style="border-left: 4px solid #e74c3c;">
+                    <h3 class="red-title">🔴 Le Secteur Criminel</h3>
+                    <p>Qu'il s'agisse de gangs de quartier (Bloods, Crips) ou d'organisations privées, l'illégal est structuré pour amener de l'action en ville. Les projets criminels s'organisent et se déclarent directement via les salons Discord dédiés.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 NEW YORK RP FR. Tous droits réservés. Serveur communautaire de jeu de rôle.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
