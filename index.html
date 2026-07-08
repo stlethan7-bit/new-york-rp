@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEW YORK RP FR | Guide Interactif du Serveur</title>
+    <title>NEW YORK RP FR | Site Officiel</title>
     <style>
         * {
             margin: 0;
@@ -16,11 +16,68 @@
             background-color: #0b0e14;
             color: #f5f6f7;
             display: flex;
+            flex-direction: column;
             height: 100vh;
             overflow: hidden;
         }
 
-        /* --- Barre Latérale Style Discord --- */
+        /* --- BARRE DE NAVIGATION PRINCIPALE (HAUT) --- */
+        .main-navbar {
+            background-color: #090c11;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            border-bottom: 1px solid #1a2233;
+            flex-shrink: 0;
+        }
+
+        .nav-btn {
+            background-color: #121722;
+            color: #90a0b5;
+            border: 1px solid #1a2233;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: #1a2233;
+            color: #fff;
+        }
+
+        .nav-btn.active {
+            background-color: #1e90ff;
+            color: #fff;
+            border-color: #1e90ff;
+            box-shadow: 0 0 15px rgba(30, 144, 255, 0.4);
+        }
+
+        /* --- CONTENEURS DES ONGLETS PRINCIPAUX --- */
+        .main-tab-panel {
+            display: none;
+            flex-grow: 1;
+            height: calc(100vh - 85px);
+            overflow: hidden;
+        }
+
+        .main-tab-panel.active {
+            display: flex;
+        }
+
+        /* --- CRÉATION DE L'INTERFACE DISCORD (ONGLET 2) --- */
+        .discord-guide-container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+
         .sidebar {
             width: 320px;
             background-color: #121722;
@@ -55,9 +112,6 @@
             padding: 20px 10px 6px 12px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
         .channel-item {
@@ -90,31 +144,20 @@
             margin-right: 10px;
             font-size: 16px;
             color: #5c6e84;
-            display: inline-block;
             width: 20px;
             text-align: center;
-        }
-
-        .channel-item.active .channel-icon {
-            color: #1e90ff;
         }
 
         .sub-channel {
             padding-left: 35px;
             font-size: 13px;
-            color: #718096;
         }
 
-        .voice-item {
-            cursor: default;
-        }
-        .voice-item:hover {
-            background-color: transparent;
-            color: #90a0b5;
-        }
+        .voice-item { cursor: default; }
+        .voice-item:hover { background-color: transparent; color: #90a0b5; }
 
-        /* --- Zone de Contenu Principale --- */
-        .main-content {
+        /* --- CONTENU DROITE (SALONS DISCORD) --- */
+        .discord-content {
             flex-grow: 1;
             background-color: #090c11;
             display: flex;
@@ -128,27 +171,25 @@
             font-size: 20px;
             font-weight: 700;
             color: #fff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
         .content-body {
             padding: 40px;
             overflow-y: auto;
             flex-grow: 1;
-            scroll-behavior: smooth;
         }
 
-        .tab-content {
+        .discord-tab-content {
             display: none;
-            animation: fadeIn 0.3s ease-in-out;
             max-width: 900px;
+            animation: fadeIn 0.2s ease-in-out;
         }
 
-        .tab-content.active {
+        .discord-tab-content.active {
             display: block;
         }
 
-        /* --- Styles des Messages & Blocs --- */
+        /* --- COPIES DES MESSAGES ET BLOCS EMBED --- */
         .msg-box {
             background-color: #121722;
             border: 1px solid #1a2233;
@@ -167,19 +208,8 @@
             gap: 8px;
         }
 
-        .author-staff { background-color: #ff475720; color: #ff4757; font-size: 11px; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; }
-        .author-bot { background-color: #5865F2; color: #fff; font-size: 11px; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; }
-        .author-mafia { background-color: #ffa50220; color: #ffa502; font-size: 11px; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; }
-
-        .embed-title-block {
-            background-color: #1a2233;
-            padding: 10px 15px;
-            font-weight: bold;
-            border-radius: 4px;
-            margin-bottom: 12px;
-            color: #fff;
-            border-left: 4px solid #1e90ff;
-        }
+        .author-staff { background-color: #ff475720; color: #ff4757; font-size: 11px; padding: 2px 6px; border-radius: 4px; }
+        .author-mafia { background-color: #ffa50220; color: #ffa502; font-size: 11px; padding: 2px 6px; border-radius: 4px; }
 
         .law-section-title {
             color: #ffcc00;
@@ -199,24 +229,87 @@
             font-size: 14.5px;
         }
 
-        .law-item.abolished {
-            border-left: 3px solid #ff4757;
-            opacity: 0.6;
+        .law-item.abolished { border-left: 3px solid #ff4757; opacity: 0.5; }
+
+        /* --- CONTENU UNIQUE DE L'ONGLET 1 (CONCEPT RP) --- */
+        .concept-container {
+            padding: 60px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+            overflow-y: auto;
+            width: 100%;
         }
 
-        .rule-title {
-            color: #ff4757;
+        .concept-card {
+            background-color: #121722;
+            border: 1px solid #1a2233;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .concept-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 40px;
+            bottom: 40px;
+            width: 4px;
+            background-color: #1e90ff;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .concept-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .concept-text {
+            font-size: 16px;
+            color: #cbd5e0;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .grid-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+            gap: 20px;
+        }
+
+        .sub-box {
+            background-color: #161d2a;
+            border: 1px solid #1a2233;
+            border-radius: 10px;
+            padding: 25px;
+        }
+
+        .sub-box h3 {
             font-size: 18px;
-            font-weight: 700;
-            margin: 20px 0 8px 0;
-            border-bottom: 1px dashed #1a2233;
-            padding-bottom: 4px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .rule-block {
-            margin-bottom: 18px;
-            padding-left: 15px;
-            border-left: 3px solid #2ed573;
+        .highlight-yellow {
+            background-color: #ffcc00;
+            color: #000;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        /* --- CONTENU UNIQUE DE L'ONGLET 3 (RECRUTEMENT) --- */
+        .recrute-container {
+            padding: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow-y: auto;
+            width: 100%;
         }
 
         .btn-link, .btn-discord {
@@ -224,34 +317,14 @@
             background-color: #1e90ff;
             color: white;
             padding: 12px 24px;
-            border-radius: 5px;
+            border-radius: 6px;
             font-weight: 700;
             text-decoration: none;
-            margin-top: 10px;
             transition: background 0.2s;
             border: none;
             cursor: pointer;
         }
-
         .btn-discord { background-color: #5865F2; }
-        .btn-discord:hover { background-color: #4752c4; }
-        .btn-link:hover { background-color: #1175d9; }
-
-        /* Forum Style Layout */
-        .forum-topic {
-            background-color: #121722;
-            border: 1px solid #1a2233;
-            border-radius: 6px;
-            padding: 15px 20px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .forum-info h4 { color: #fff; font-size: 16px; margin-bottom: 4px; }
-        .forum-info p { color: #718096; font-size: 13px; }
-        .forum-badge { width: 45px; height: 45px; border-radius: 6px; background-color: #1a2233; display: flex; align-items: center; justify-content: center; font-size: 20px; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(4px); }
@@ -261,249 +334,199 @@
 </head>
 <body>
 
-    <!-- MENUS & SALONS DISCORD -->
-    <div class="sidebar">
-        <div class="server-header">NEW YORK RP FR</div>
-        
-        <div class="channel-list">
-            <!-- Salons Principaux -->
-            <div class="channel-item active" onclick="openChannel('quoi-faire', '❓-•-quoi_faire')">
-                <span class="channel-icon">❓</span> quoi_faire
-            </div>
-            <div class="channel-item" onclick="openChannel('suggestions', '💡-•-suggestions')">
-                <span class="channel-icon">💡</span> suggestions
-            </div>
-            <div class="channel-item" onclick="openChannel('site-web', '💻-•-site-web')">
-                <span class="channel-icon">💻</span> site-web
-            </div>
-
-            <!-- Catégorie IMPORTANT -->
-            <div class="channel-category">🚨 ¡IMPORTANT! 🚨</div>
-            <div class="channel-item" onclick="openChannel('arrivee', '✈️-•-arrivée')">
-                <span class="channel-icon">✈️</span> arrivée
-            </div>
-            <div class="channel-item" onclick="openChannel('regles', '📜-•-règles')">
-                <span class="channel-icon">📜</span> règles
-            </div>
-            <div class="channel-item" onclick="openChannel('mort-rp', '☠️-•-mort_rp')">
-                <span class="channel-icon">☠️</span> mort_rp
-            </div>
-            <div class="channel-item" onclick="openChannel('tickets', '🎫-•-tickets')">
-                <span class="channel-icon">🎫</span> tickets
-            </div>
-            <div class="channel-item" onclick="openChannel('blacklist', '❌-•-black-liste')">
-                <span class="channel-icon">❌</span> black-liste
-            </div>
-            <div class="channel-item" onclick="openChannel('session', '⏱️-•-session')">
-                <span class="channel-icon">⏱️</span> session
-            </div>
-            <div class="channel-item" onclick="openChannel('annonce', '📯-•-annonce')">
-                <span class="channel-icon">📯</span> annonce
-            </div>
-
-            <!-- Catégorie MAIRIE -->
-            <div class="channel-category">🏛️ Mairie 🏛️</div>
-            <div class="channel-item" onclick="openChannel('suggestion-lois', '👤-•-suggestion_de_lois')">
-                <span class="channel-icon">👤</span> suggestion_de_lois
-            </div>
-            <div class="channel-item" onclick="openChannel('lois', '📜-•-lois')">
-                <span class="channel-icon">📜</span> lois
-            </div>
-            <div class="channel-item" onclick="openChannel('election', '✉️-•-élection')">
-                <span class="channel-icon">✉️</span> élection
-            </div>
-            <div class="channel-item sub-channel" onclick="openChannel('jeremie', '└ JÉRÉMIE')">
-                JÉRÉMIE
-            </div>
-            <div class="channel-item sub-channel" onclick="openChannel('pres-election', '└ PRÉSANTATION DE ÉLECTION')">
-                PRÉSANTATION DE ÉLECTION
-            </div>
-            <div class="channel-item" onclick="openChannel('secu-maire', '🪯-•-agent-de-sécurité-maire')">
-                <span class="channel-icon">🪯</span> agent-de-sécurité-maire
-            </div>
-            <!-- Vocaux Mairie -->
-            <div class="channel-item voice-item"><span class="channel-icon">🔊</span> 🗳️-•- Votes</div>
-            <div class="channel-item voice-item"><span class="channel-icon">🔊</span> 🤵-•- maire</div>
-            <div class="channel-item voice-item"><span class="channel-icon">🔊</span> 🏛️-•- bureau du maire</div>
-            <div class="channel-item voice-item"><span class="channel-icon">🔊</span> 🪯-•- SPM</div>
-
-            <!-- Catégorie RECRUTEMENT -->
-            <div class="channel-category">💼 ¡RECRUTMENT! 💼</div>
-            <div class="channel-item" onclick="openChannel('postulation', '💼-•-postulation')">
-                <span class="channel-icon">💼</span> postulation
-            </div>
-            <div class="channel-item" onclick="openChannel('cv', '✉️-•-cv')">
-                <span class="channel-icon">✉️</span> cv
-            </div>
-            <div class="channel-item" onclick="openChannel('resultats', '🏆-•-résultats')">
-                <span class="channel-icon">🏆</span> résultats
-            </div>
-            <div class="channel-item" onclick="openChannel('info-metiers', '💼-•-info_métiers')">
-                <span class="channel-icon">💼</span> info_métiers
-            </div>
-            <div class="channel-item" onclick="openChannel('travaille', '🛺-•-travaille')">
-                <span class="channel-icon">🛺</span> travaille
-            </div>
-
-            <!-- Catégorie COLLÈGE STERLING -->
-            <div class="channel-category">🏫 ¡COLLÈGE STERLING! 🏫</div>
-            <div class="channel-item" onclick="openChannel('inscription-sterling', '💻-•-inscription')">
-                <span class="channel-icon">💻</span> inscription
-            </div>
-
-            <!-- Catégorie CRIMINELS & MAFIA -->
-            <div class="channel-category">☠️ ¡CRIMINELS! ☠️</div>
-            <div class="channel-item" onclick="openChannel('crim-bloods', '🔴-bloods')">
-                <span class="channel-icon">🔴</span> bloods
-            </div>
-            <div class="channel-item" onclick="openChannel('crim-crips', '🔵-crips')">
-                <span class="channel-icon">🔵</span> crips
-            </div>
-            
-            <div class="channel-category">🕵️ ITFamiglia siciliana 🍾</div>
-            <div class="channel-item" onclick="openChannel('mafia-annonce', '🔒-annonce-importante‼️')">
-                <span class="channel-icon">🔒</span> annonce-importante‼️
-            </div>
-            <div class="channel-item" onclick="openChannel('mafia-regles', '🔒-nos-règle📜')">
-                <span class="channel-icon">🔒</span> nos-règle📜
-            </div>
-            <div class="channel-item" onclick="openChannel('mafia-integrer', '🔒-demande-pour-nousintégrer')">
-                <span class="channel-icon">🔒</span> demande-pour-nousintégrer
-            </div>
-            <!-- Vocaux Mafia -->
-            <div class="channel-item voice-item"><span class="channel-icon">🔒🔊</span> Bureau du chef 🤫</div>
-            <div class="channel-item voice-item"><span class="channel-icon">🔒🔊</span> Vocal</div>
-            <div class="channel-item voice-item"><span class="channel-icon">🔒🔊</span> Souper de famille 🍾🍽️</div>
-            <div class="channel-item voice-item"><span class="channel-icon">🔒🔊</span> Exécution 👤🔫</div>
-
-            <!-- Catégorie STAFF -->
-            <div class="channel-category">🛡️ STAFF 🛡️</div>
-            <div class="channel-item" onclick="openChannel('staff-annonce', '🔒-📢-•-annonce-staff')">
-                <span class="channel-icon">🔒</span> annonce-staff
-            </div>
-            <div class="channel-item" onclick="openChannel('staff-regles', '🔒-📜-•-règlements-staff')">
-                <span class="channel-icon">🔒</span> règlements-staff
-            </div>
-            <div class="channel-item" onclick="openChannel('staff-discussion', '🔒-💬-•-discussion-staff')">
-                <span class="channel-icon">🔒</span> discussion-staff
-            </div>
-            <div class="channel-item" onclick="openChannel('staff-hierarchie', '🔒-🥇-•-hiérarchie')">
-                <span class="channel-icon">🔒</span> hiérarchie
-            </div>
-            <div class="channel-item" onclick="openChannel('staff-promotions', '🔒-📈-•-promotions')">
-                <span class="channel-icon">🔒</span> promotions
-            </div>
-
-            <!-- Catégorie STATISTIQUES -->
-            <div class="channel-category">📈 Statistiques 📊</div>
-            <div class="channel-item voice-item"><span class="channel-icon">🔒🔊</span> Membres : 27</div>
-            <div class="channel-item voice-item"><span class="channel-icon">🔒🔊</span> Utilisateurs : 19</div>
-            <div class="channel-item voice-item"><span class="channel-icon">🔒🔊</span> Bots : 8</div>
-            <div class="channel-item voice-item"><span class="channel-icon">🔒🔊</span> Rôles : 57</div>
-            <div class="channel-item voice-item"><span class="channel-icon">🔒🔊</span> Salons : 106</div>
-            <div class="channel-item voice-item"><span class="channel-icon">🔒🔊</span> =====EN SERVICE===== : 0</div>
-        </div>
+    <!-- 1. NAVIGATION SUPÉRIEURE PRINCIPALE -->
+    <div class="main-navbar">
+        <button class="nav-btn active" onclick="switchMainTab('tab-concept')">🎭 Le Concept du RP</button>
+        <button class="nav-btn" onclick="switchMainTab('tab-guide-discord')">📢 Guide du Discord</button>
+        <button class="nav-btn" onclick="switchMainTab('tab-se-faire-recruter')">💼 Se faire Recruter</button>
     </div>
 
-    <!-- ZONE DE CONTENU PRINCIPALE -->
-    <div class="main-content">
-        <div class="top-bar" id="current-channel-title"># ❓-•-quoi_faire</div>
-        
-        <div class="content-body">
-            
-            <!-- QUOI FAIRE -->
-            <div id="quoi-faire" class="tab-content active">
-                <div class="msg-box">
-                    <div class="author">James Wild <span class="author-staff">Fondateur</span></div>
-                    <p style="margin-bottom: 15px;"><strong>Guide d'Intégration et de Démarrage - NEW YORK RP FR</strong></p>
-                    <p style="color: #cbd5e0; margin-bottom: 20px;">Bienvenue sur notre serveur ! Ce guide a pour but de vous accompagner dans vos premiers pas...</p>
-                    <a href="https://docs.google.com/document/d/11dClMraacbfDXvf5u5AwaUY3GIK8QOb4STd4IKukbU0/edit?usp=sharing" target="_blank" class="btn-link">Consulter le Guide d'Intégration</a>
-                </div>
-            </div>
-
-            <!-- LOIS (COMPLET AVEC LE CODE MUNICIPAL) -->
-            <div id="lois" class="tab-content">
-                <div class="msg-box">
-                    <div class="author">Mairie de New York <span class="author-staff">Gouvernement</span></div>
-                    <h2 style="color: #fff; margin-bottom: 10px;">📜 Code municipal – NEW YORK</h2>
-                    <p style="font-style: italic; color: #a0aec0; margin-bottom: 5px;">*Ce code est applicable dans NEW YORK seulement, pas nécessairement hors de la ville.*</p>
-                    <p style="font-style: italic; color: #a0aec0; margin-bottom: 15px;">*Il est sujet à changer à tout moment selon les lois votées et mises en vigueur par les Conseillers municipaux et le Maire.*</p>
-                    <p style="color: #ff4757; font-weight: bold; margin-bottom: 20px;">⚠️ Les infractions plus sévères ne font pas partie du code municipal.</p>
-
-                    <div class="law-section-title">🚦 Infractions mineures de la route</div>
-                    <div class="law-item abolished">
-                        <del><strong>Art. 10</strong> — Virage à droite au feu rouge interdit. Amende : 100 $ à 200 $ (LOI ABOLIE)</del>
+    <!-- ========================================== -->
+    <!-- PANEL 1 : LE CONCEPT DU RP -->
+    <!-- ========================================== -->
+    <div id="tab-concept" class="main-tab-panel active">
+        <div class="concept-container">
+            <div class="concept-card">
+                <h1 class="concept-title">Comprendre le fonctionnement du RP</h1>
+                <p class="concept-text">Bienvenue sur NEW YORK RP FR. Notre serveur est basé sur une expérience <strong>Serious RP</strong> immersive dans un cadre américain réaliste. Vous créez votre personnage et écrivez votre propre histoire.</p>
+                
+                <div class="grid-boxes">
+                    <div class="sub-box">
+                        <h3 style="color: #1e90ff;">⚖️ Fair-Play & Respect</h3>
+                        <p style="color: #cbd5e0; font-size: 14.5px; line-height: 1.5; margin-top: 10px;">Le but premier est de construire des scènes de qualité. Perdre une action fait partie du jeu. Le respect total des règles est <span class="highlight-yellow">OBLIGATOIRE</span>.</p>
                     </div>
-                    <div class="law-item"><strong>Art. 11</strong> — Absence du port de la ceinture de sécurité interdite. Amende : 100 $</div>
-                    <div class="law-item"><strong>Art. 12</strong> — Usage du téléphone au volant interdit. Amende : 200 $</div>
-                    <div class="law-item"><strong>Art. 13</strong> — Priorité obligatoire aux véhicules d’urgence avec gyrophares. Amende : 250 $</div>
-                    <div class="law-item"><strong>Art. 14</strong> — Circulation sans phares allumés de nuit interdite. Amende : 100 $</div>
-                    <div class="law-item"><strong>Art. 15</strong> — Plaques personnalisées interdites. Amende : 100 $</div>
-                    <div class="law-item"><strong>Art. 16</strong> — Circulation dans une zone de chantier sans autorisation interdite. Amende : 250 $</div>
+                    <div class="sub-box">
+                        <h3 style="color: #1e90ff;">⏱️ Sessions Planifiées</h3>
+                        <p style="color: #cbd5e0; font-size: 14.5px; line-height: 1.5; margin-top: 10px;">La ville ouvre ses portes lors de sessions précises. Les horaires et l'état d'ouverture du serveur sont annoncés à l'avance pour rassembler le maximum de joueurs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                    <div class="law-section-title">🅿️ Stationnement et circulation</div>
-                    <div class="law-item"><strong>Art. 20</strong> — Véhicule abandonné sur voie publique interdit. Amende : 250 $ + remorquage</div>
-                    <div class="law-item"><strong>Art. 21</strong> — Blocage d’une voie publique interdit. Amende : 250 $ + remorquage possible</div>
-                    <div class="law-item"><strong>Art. 22</strong> — Blocage d'une entrée privée ou publique interdit. Amende : 150 $ + remorquage</div>
-                    <div class="law-item"><strong>Art. 23</strong> — Stationnement obstruant circulation ou accès interdit. Amende : 150 $</div>
-                    <div class="law-item"><strong>Art. 24</strong> — Stationnement dans les zones réservées aux services d’urgence interdit. Amende : 300 $ + remorquage</div>
-                    <div class="law-item"><strong>Art. 25</strong> — Stationnement interdit sur passages piétons. Amende : 200 $</div>
-                    <div class="law-item"><strong>Art. 26</strong> — Stationnement devant borne d’incendie interdit. Amende : 300 $</div>
-                    <div class="law-item"><strong>Art. 27</strong> — Stationnement interdit à moins de 5 m d'un panneau d'arrêt. Amende : 200 $</div>
-                    <div class="law-item"><strong>Art. 28</strong> — Stationnement devant un arrêt de bus interdit. Amende : 250 $</div>
-                    <div class="law-item"><strong>Art. 29</strong> — Ne pas donner priorité à un piéton sur une traverse. Amende : 250 $</div>
+
+    <!-- ========================================== -->
+    <!-- PANEL 2 : GUIDE DU DISCORD (INTERFACE DISCORD COMPLÈTE) -->
+    <!-- ========================================== -->
+    <div id="tab-guide-discord" class="main-tab-panel">
+        <div class="discord-guide-container">
+            
+            <!-- Barre latérale gauche (Salons) -->
+            <div class="sidebar">
+                <div class="server-header">NEW YORK RP FR</div>
+                <div class="channel-list">
+                    
+                    <div class="channel-item active" onclick="openDiscordChannel('q-faire', '❓-•-quoi_faire')"><span class="channel-icon">❓</span> quoi_faire</div>
+                    
+                    <!-- MAIRIE -->
+                    <div class="channel-category">🏛️ Mairie 🏛️</div>
+                    <div class="channel-item" onclick="openDiscordChannel('sug-lois', '👤-•-suggestion_de_lois')"><span class="channel-icon">👤</span> suggestion_de_lois</div>
+                    <div class="channel-item" onclick="openDiscordChannel('sal-lois', '📜-•-lois')"><span class="channel-icon">📜</span> lois</div>
+                    <div class="channel-item" onclick="openDiscordChannel('sal-election', '✉️-•-élection')"><span class="channel-icon">✉️</span> élection</div>
+                    <div class="channel-item sub-channel" onclick="openDiscordChannel('sub-jeremie', '└ JÉRÉMIE')">JÉRÉMIE</div>
+                    <div class="channel-item sub-channel" onclick="openDiscordChannel('sub-pres-elec', '└ PRÉSANTATION DE ÉLECTION')">PRÉSANTATION DE ÉLECTION</div>
+                    <div class="channel-item" onclick="openDiscordChannel('sal-secu', '🪯-•-agent-de-sécurité-maire')"><span class="channel-icon">🪯</span> agent-de-sécurité-maire</div>
+                    
+                    <!-- Vocaux Mairie -->
+                    <div class="channel-item voice-item"><span class="channel-icon">🔊</span> 🗳️-•- Votes</div>
+                    <div class="channel-item voice-item"><span class="channel-icon">🔊</span> 🤵-•- maire</div>
+                    <div class="channel-item voice-item"><span class="channel-icon">🔊</span> 🏛️-•- bureau du maire</div>
+                    <div class="channel-item voice-item"><span class="channel-icon">🔊</span> 🪯-•- SPM</div>
+
+                    <!-- CRIMINELS & MAFIA -->
+                    <div class="channel-category">☠️ ¡CRIMINELS! ☠️</div>
+                    <div class="channel-item" onclick="openDiscordChannel('sal-bloods', '🔴-bloods')"><span class="channel-icon">🔴</span> bloods</div>
+                    <div class="channel-item" onclick="openDiscordChannel('sal-crips', '🔵-crips')"><span class="channel-icon">🔵</span> crips</div>
+
+                    <div class="channel-category">🕵️ ITFamiglia siciliana 🍾</div>
+                    <div class="channel-item" onclick="openDiscordChannel('maf-ann', '🔒-annonce-importante‼️')"><span class="channel-icon">🔒</span> annonce-importante‼️</div>
+                    <div class="channel-item" onclick="openDiscordChannel('maf-reg', '🔒-nos-règle📜')"><span class="channel-icon">🔒</span> nos-règle📜</div>
+                    <div class="channel-item" onclick="openDiscordChannel('maf-int', '🔒-demande-pour-nousintégrer')"><span class="channel-icon">🔒</span> demande-pour-nousintégrer</div>
+
+                    <!-- STAFF -->
+                    <div class="channel-category">🛡️ STAFF 🛡️</div>
+                    <div class="channel-item" onclick="openDiscordChannel('stf-ann', '🔒-📢-•-annonce-staff')"><span class="channel-icon">🔒</span> annonce-staff</div>
+                    <div class="channel-item" onclick="openDiscordChannel('stf-reg', '🔒-📜-•-règlements-staff')"><span class="channel-icon">🔒</span> règlements-staff</div>
+                    <div class="channel-item" onclick="openDiscordChannel('stf-disc', '🔒-💬-•-discussion-staff')"><span class="channel-icon">🔒</span> discussion-staff</div>
+                    <div class="channel-item" onclick="openDiscordChannel('stf-hie', '🔒-🥇-•-hiérarchie')"><span class="channel-icon">🔒</span> hiérarchie</div>
+                    <div class="channel-item" onclick="openDiscordChannel('stf-prom', '🔒-📈-•-promotions')"><span class="channel-icon">🔒</span> promotions</div>
+
+                    <!-- STATISTIQUES -->
+                    <div class="channel-category">📈 Statistiques 📊</div>
+                    <div class="channel-item voice-item"><span class="channel-icon">🔒🔊</span> Membres : 27</div>
+                    <div class="channel-item voice-item"><span class="channel-icon">🔒🔊</span> Utilisateurs : 19</div>
+                    <div class="channel-item voice-item"><span class="channel-icon">🔒🔊</span> Bots : 8</div>
+                    <div class="channel-item voice-item"><span class="channel-icon">🔒🔊</span> Rôles : 57</div>
+                    <div class="channel-item voice-item"><span class="channel-icon">🔒🔊</span> Salons : 106</div>
+                    <div class="channel-item voice-item"><span class="channel-icon">🔒🔊</span> =====EN SERVICE===== : 0</div>
                 </div>
             </div>
 
-            <!-- AUTRES SALONS MAIRIE -->
-            <div id="suggestion-lois" class="tab-content"><div class="msg-box"><p>Espace réservé aux citoyens pour proposer des amendements ou de nouvelles lois.</p></div></div>
-            <div id="election" class="tab-content"><div class="msg-box"><p>Annonces officielles concernant la campagne électorale et le calendrier des votes.</p></div></div>
-            <div id="jeremie" class="tab-content"><div class="msg-box"><h4>Salon Candidat : JÉRÉMIE</h4><p style="margin-top:10px; color:#cbd5e0;">Espace de communication ou programme électoral du candidat Jérémie.</p></div></div>
-            <div id="pres-election" class="tab-content"><div class="msg-box"><p>Présentations détaillées des différents candidats à la mairie de New York.</p></div></div>
-            <div id="secu-maire" class="tab-content"><div class="msg-box"><p>Informations et directives concernant le corps de sécurité rapprochée du Maire.</p></div></div>
+            <!-- Contenu central du salon sélectionné -->
+            <div class="discord-content">
+                <div class="top-bar" id="current-discord-title"># ❓-•-quoi_faire</div>
+                <div class="content-body">
+                    
+                    <!-- QUOI FAIRE -->
+                    <div id="q-faire" class="discord-tab-content active">
+                        <div class="msg-box">
+                            <div class="author">James Wild <span class="author-staff">Fondateur</span></div>
+                            <p>Bienvenue sur notre serveur ! Utilisez la barre de navigation du haut et les salons de gauche pour explorer toute notre documentation.</p>
+                        </div>
+                    </div>
 
-            <!-- FAMIGLIA SICILIANA -->
-            <div id="mafia-annonce" class="tab-content"><div class="msg-box"><div class="author">Don Siciliano <span class="author-mafia">Famille</span></div><p>Annonces internes majeures de l'organisation criminelle italienne.</p></div></div>
-            <div id="mafia-regles" class="tab-content"><div class="msg-box"><h3 style="color:#ffa502;">📜 Le Code d'Honneur (Omertà)</h3><p style="margin-top:10px; color:#cbd5e0;">Règles strictes de la Famiglia. Toute trahison sera punie d'une exécution.</p></div></div>
-            <div id="mafia-integrer" class="tab-content"><div class="msg-box"><p>Formulaire secret et demandes pour faire ses preuves et intégrer la famille.</p></div></div>
+                    <!-- LOIS (CODE MUNICIPAL COMPLET) -->
+                    <div id="sal-lois" class="discord-tab-content">
+                        <div class="msg-box">
+                            <div class="author">Mairie de New York <span class="author-staff">Gouvernement</span></div>
+                            <h2 style="color: #fff; margin-bottom: 10px;">📜 Code municipal – NEW YORK</h2>
+                            <p style="font-style: italic; color: #a0aec0; margin-bottom: 15px;">*Ce code est applicable dans NEW YORK seulement, pas nécessairement hors de la ville.*</p>
+                            
+                            <div class="law-section-title">🚦 Infractions mineures de la route</div>
+                            <div class="law-item abolished"><del><strong>Art. 10</strong> — Virage à droite au feu rouge interdit. Amende : 100 $ à 200 $ (LOI ABOLIE)</del></div>
+                            <div class="law-item"><strong>Art. 11</strong> — Absence du port de la ceinture de sécurité interdite. Amende : 100 $</div>
+                            <div class="law-item"><strong>Art. 12</strong> — Usage du téléphone au volant interdit. Amende : 200 $</div>
+                            <div class="law-item"><strong>Art. 13</strong> — Priorité obligatoire aux véhicules d’urgence avec gyrophares. Amende : 250 $</div>
+                            <div class="law-item"><strong>Art. 14</strong> — Circulation sans phares allumés de nuit interdite. Amende : 100 $</div>
+                            <div class="law-item"><strong>Art. 15</strong> — Plaques personnalisées interdites. Amende : 100 $</div>
+                            <div class="law-item"><strong>Art. 16</strong> — Circulation dans une zone de chantier sans autorisation interdite. Amende : 250 $</div>
 
-            <!-- STAFF SALONS PRIVÉS -->
-            <div id="staff-annonce" class="tab-content"><div class="msg-box"><p style="color:#ff4757; font-weight:bold;">🔒 Réservé à l'administration du serveur.</p></div></div>
-            <div id="staff-regles" class="tab-content"><div class="msg-box"><p>Règlement intérieur et devoirs de l'équipe de modération.</p></div></div>
-            <div id="staff-discussion" class="tab-content"><div class="msg-box"><p>Salon de discussion interne pour la coordination des sanctions et des scènes.</p></div></div>
-            <div id="staff-hierarchie" class="tab-content"><div class="msg-box"><p>Organigramme officiel du staff (Fondateur, Gérant Staff, Administrateurs, Modérateurs, Helpeurs).</p></div></div>
-            <div id="staff-promotions" class="tab-content"><div class="msg-box"><p>Historique des promotions et des passages au grade supérieur pour l'équipe.</p></div></div>
+                            <div class="law-section-title">🅿️ Stationnement et circulation</div>
+                            <div class="law-item"><strong>Art. 20</strong> — Véhicule abandonné sur voie publique interdit. Amende : 250 $ + remorquage</div>
+                            <div class="law-item"><strong>Art. 21</strong> — Blocage d’une voie publique interdit. Amende : 250 $ + remorquage possible</div>
+                            <div class="law-item"><strong>Art. 22</strong> — Blocage d'une entrée privée ou publique interdit. Amende : 150 $ + remorquage</div>
+                            <div class="law-item"><strong>Art. 23</strong> — Stationnement obstruant circulation ou accès interdit. Amende : 150 $</div>
+                            <div class="law-item"><strong>Art. 24</strong> — Stationnement dans les zones réservées aux services d’urgence interdit. Amende : 300 $ + remorquage</div>
+                            <div class="law-item"><strong>Art. 25</strong> — Stationnement interdit sur passages piétons. Amende : 200 $</div>
+                            <div class="law-item"><strong>Art. 26</strong> — Stationnement devant borne d’incendie interdit. Amende : 300 $</div>
+                            <div class="law-item"><strong>Art. 27</strong> — Stationnement interdit à moins de 5 m d'un panneau d'arrêt. Amende : 200 $</div>
+                            <div class="law-item"><strong>Art. 28</strong> — Stationnement devant un arrêt de bus interdit. Amende : 250 $</div>
+                            <div class="law-item"><strong>Art. 29</strong> — Ne pas donner priorité à un piéton sur une traverse. Amende : 250 $</div>
+                        </div>
+                    </div>
 
-            <!-- ANCIENS SALONS CONSERVÉS -->
-            <div id="suggestions" class="tab-content"><div class="msg-box"><p>Proposez vos idées d'ajouts généraux pour le serveur.</p></div></div>
-            <div id="site-web" class="tab-content"><div class="msg-box"><p>Lien et documentation du site internet.</p></div></div>
-            <div id="arrivee" class="tab-content"><div class="msg-box"><p>🎉 Bienvenue aux nouveaux joueurs !</p></div></div>
-            <div id="regles" class="tab-content"><div class="msg-box"><div class="rule-title">Règles Générales</div><div class="rule-block"><p>Pain RP, Fear RP et respect obligatoire de la hiérarchie en jeu.</p></div></div></div>
-            <div id="mort-rp" class="tab-content"><div class="msg-box"><p>Règles sur le coma et les morts permanentes de vos personnages.</p></div></div>
-            <div id="tickets" class="tab-content"><div class="msg-box"><p>Ouvrez un ticket sur Discord en cas de problème de scène ou de bug.</p></div></div>
-            <div id="blacklist" class="tab-content"><div class="msg-box"><h3>❌ Formulaire de Bannissement</h3><pre style="background:#080b10; padding:15px; border-radius:5px; color:#cbd5e0;">Nom RP » \nDiscord » \nRoblox » \nRaison »</pre></div></div>
-            <div id="session" class="tab-content"><div class="msg-box"><p>Codes des sessions Roblox Liberty County.</p></div></div>
-            <div id="annonce" class="tab-content"><div class="msg-box"><p>Annonces communautaires globales.</p></div></div>
-            <div id="crim-bloods" class="tab-content"><div class="msg-box"><h3>🔴 Gang Bloods</h3><p>Territoire et effectifs de la faction.</p></div></div>
-            <div id="crim-crips" class="tab-content"><div class="msg-box"><h3>🔵 Gang Crips</h3><p>Territoire et effectifs de la faction.</p></div></div>
-            <div id="inscription-sterling" class="tab-content"><div class="msg-box" style="text-align:center;"><a href="https://docs.google.com/forms/d/e/1FAIpQLSe57ecr1UdgFKEmeYiZFlLS94z6WPBdDkHulQiG-UbQLghFDA/viewform?usp=publish-editor" target="_blank" class="btn-discord">Ouvrir le Google Forms d'inscription</a></div></div>
-            <div id="postulation" class="tab-content"><div class="msg-box"><pre style="background:#080b10; padding:15px; color:#cbd5e0;">Modèle de CV standard à copier...</pre></div></div>
-            <div id="cv" class="tab-content"><div class="msg-box"><p>Exemple de candidature déposée par Mr Leandro pour la Police.</p></div></div>
-            <div id="resultats" class="tab-content"><div class="msg-box"><p>Félicitations aux nouveaux membres acceptés dans les entreprises !</p></div></div>
-            <div id="info-metiers" class="tab-content"><div class="msg-box"><p>Liste complète des jobs disponibles (NYPD, FDNY, DOT, SPM, Éboueurs).</p></div></div>
-            <div id="travaille" class="tab-content"><div class="msg-box"><h3>🛺 Forums Entreprises</h3><p>Retrouvez toutes les fiches de poste.</p></div></div>
+                    <!-- Emplacements vides pour les autres salons de ton Discord -->
+                    <div id="sug-lois" class="discord-tab-content"><div class="msg-box"><p>Salon #suggestion_de_lois</p></div></div>
+                    <div id="sal-election" class="discord-tab-content"><div class="msg-box"><p>Salon #élection</p></div></div>
+                    <div id="sub-jeremie" class="discord-tab-content"><div class="msg-box"><p>Salon de campagne de JÉRÉMIE</p></div></div>
+                    <div id="sub-pres-elec" class="discord-tab-content"><div class="msg-box"><p>Salon PRÉSANTATION DE ÉLECTION</p></div></div>
+                    <div id="sal-secu" class="discord-tab-content"><div class="msg-box"><p>Salon #agent-de-sécurité-maire</p></div></div>
+                    <div id="sal-bloods" class="discord-tab-content"><div class="msg-box"><p>Salon Faction Bloods</p></div></div>
+                    <div id="sal-crips" class="discord-tab-content"><div class="msg-box"><p>Salon Faction Crips</p></div></div>
+                    <div id="maf-ann" class="discord-tab-content"><div class="msg-box"><p>Salon privé annonce Mafia</p></div></div>
+                    <div id="maf-reg" class="discord-tab-content"><div class="msg-box"><p>Salon privé règles Mafia</p></div></div>
+                    <div id="maf-int" class="discord-tab-content"><div class="msg-box"><p>Salon privé recrutement Mafia</p></div></div>
+                    <div id="stf-ann" class="discord-tab-content"><div class="msg-box"><p>Salon privé annonce staff</p></div></div>
+                    <div id="stf-reg" class="discord-tab-content"><div class="msg-box"><p>Salon privé règlements staff</p></div></div>
+                    <div id="stf-disc" class="discord-tab-content"><div class="msg-box"><p>Salon privé discussion staff</p></div></div>
+                    <div id="stf-hie" class="discord-tab-content"><div class="msg-box"><p>Salon privé hiérarchie staff</p></div></div>
+                    <div id="stf-prom" class="discord-tab-content"><div class="msg-box"><p>Salon privé promotions staff</p></div></div>
+                </div>
+            </div>
 
         </div>
     </div>
 
-    <!-- CODE SCRIPT INTERACTIF -->
-    <script>
-        function openChannel(tabId, channelName) {
-            document.getElementById('current-channel-title').innerText = '# ' + channelName;
 
-            var contents = document.getElementsByClassName('tab-content');
-            for (var i = 0; i < contents.length; i++) {
-                contents[i].classList.remove('active');
+    <!-- ========================================== -->
+    <!-- PANEL 3 : SE FAIRE RECRUTER -->
+    <!-- ========================================== -->
+    <div id="tab-se-faire-recruter" class="main-tab-panel">
+        <div class="recrute-container">
+            <div class="msg-box" style="text-align: center;">
+                <h2 style="color: #fff; margin-bottom: 15px;">Formulaires d'Admissions et Recrutement</h2>
+                <p style="color: #cbd5e0; margin-bottom: 25px;">Rejoignez le Collège Sterling ou postulez directement au sein des entreprises de la ville.</p>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSe57ecr1UdgFKEmeYiZFlLS94z6WPBdDkHulQiG-UbQLghFDA/viewform?usp=publish-editor" target="_blank" class="btn-discord">S'inscrire au Collège Sterling (Google Forms)</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- --- CODE SCRIPT UNIQUE ET COMPLET --- -->
+    <script>
+        // Logique de navigation entre les ONGLETS PRINCIPAUX du haut
+        function switchMainTab(panelId) {
+            var panels = document.getElementsByClassName('main-tab-panel');
+            for (var i = 0; i < panels.length; i++) {
+                panels[i].classList.remove('active');
+            }
+
+            var buttons = document.getElementsByClassName('nav-btn');
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove('active');
+            }
+
+            document.getElementById(panelId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        // Logique de navigation interne de la barre latérale DISCORD
+        function openDiscordChannel(contentId, channelLabel) {
+            document.getElementById('current-discord-title').innerText = '# ' + channelLabel;
+
+            var dContents = document.getElementsByClassName('discord-tab-content');
+            for (var i = 0; i < dContents.length; i++) {
+                dContents[i].classList.remove('active');
             }
 
             var items = document.getElementsByClassName('channel-item');
@@ -511,9 +534,9 @@
                 items[i].classList.remove('active');
             }
 
-            var activeContent = document.getElementById(tabId);
-            if(activeContent) {
-                activeContent.classList.add('active');
+            var activeChan = document.getElementById(contentId);
+            if(activeChan) {
+                activeChan.classList.add('active');
             }
             event.currentTarget.classList.add('active');
         }
