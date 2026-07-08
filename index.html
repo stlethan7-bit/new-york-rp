@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEW YORK RP FR | Serveur Serious RP</title>
+    <title>NEW YORK RP FR | Guide du Serveur</title>
     <style>
         /* --- Styles Généraux --- */
         * {
@@ -138,7 +138,6 @@
             border-radius: 2px;
         }
 
-        /* Surlignage */
         .highlight {
             background-color: #ffcc00;
             color: #000;
@@ -159,37 +158,35 @@
             padding: 30px;
             border-radius: 8px;
             border: 1px solid #1a2233;
-            transition: border-color 0.3s;
-        }
-
-        .card:hover {
-            border-color: #1e90ff;
         }
 
         .card h3 {
             font-size: 20px;
             margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
             color: #1e90ff;
         }
 
-        .card h3.red-title {
-            color: #e74c3c;
+        /* --- Liste ordonnée (Étapes) --- */
+        .steps {
+            list-style: none;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        /* --- Liens internes --- */
-        .card-link {
-            display: inline-block;
-            margin-top: 15px;
-            font-weight: bold;
-            color: #5865F2;
-            transition: color 0.2s;
+        .steps li {
+            background-color: #121722;
+            margin-bottom: 15px;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #ffcc00;
+            font-size: 16px;
         }
 
-        .card-link:hover {
-            color: #4752c4;
+        .steps li strong {
+            color: #ffcc00;
+            font-size: 18px;
+            display: block;
+            margin-bottom: 5px;
         }
 
         /* --- Footer --- */
@@ -211,9 +208,9 @@
             <nav>
                 <ul>
                     <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="#bases">Nos Bases</a></li>
-                    <li><a href="#discord-info">Le Discord</a></li>
-                    <li><a href="#factions">Factions</a></li>
+                    <li><a href="#fonctionnement">Comment ça marche</a></li>
+                    <li><a href="#discord-summary">Résumé du Discord</a></li>
+                    <li><a href="#recrutement">Se faire recruter</a></li>
                 </ul>
             </nav>
         </div>
@@ -223,73 +220,77 @@
     <section id="accueil">
         <div class="container">
             <h1>NEW YORK RP FR</h1>
-            <p>Découvrez une simulation américaine immersive et équilibrée. Que vous incarniez un citoyen honnête, un membre des forces de l'ordre ou un acteur de la pègre, votre destin se forge ici.</p>
+            <p>Tout comprendre sur le fonctionnement de notre ville, la structure de notre Discord et la méthode pour nous rejoindre rapidement.</p>
             <a href="https://discord.gg/RMbDSbTsc" target="_blank" class="btn-discord">REJOINDRE LE DISCORD</a>
         </div>
     </section>
 
-    <!-- Les Bases du RP -->
-    <section id="bases" class="section">
+    <!-- Comment marche le RP -->
+    <section id="fonctionnement" class="section">
         <div class="container">
-            <h2 class="section-title">Les Bases de notre RP</h2>
+            <h2 class="section-title">Comment marche notre RP ?</h2>
             <div class="grid">
                 <div class="card">
-                    <h3>🎭 Immersion Serious RP</h3>
-                    <p>Nous prônons un jeu de rôle réaliste et sérieux. Chaque personnage doit avoir une histoire cohérente, des ambitions logiques et simuler des réactions réalistes face au danger (Fear RP) ou à l'autorité.</p>
+                    <h3>🎭 Choisissez votre camp</h3>
+                    <p>Dans notre simulation, vous incarnez le personnage de votre choix. Vous pouvez opter pour la légalité en travaillant pour les services publics ou monter une entreprise, ou bien choisir l'illégalité au sein de gangs ou d'organisations criminelles.</p>
                 </div>
                 <div class="card">
-                    <h3>⚖️ Fair-Play Obligatoire</h3>
-                    <p>L'objectif sur notre serveur n'est pas de gagner chaque scène, mais de créer une interaction de qualité pour tous. Le respect du règlement est <span class="highlight">OBLIGATOIRE</span> pour le confort de la communauté.</p>
+                    <h3>📢 Les Sessions de jeu</h3>
+                    <p>Le serveur fonctionne par sessions planifiées. Les horaires d'ouverture de la ville sont partagés à l'avance. Le respect des règles de comportement et de fair-play est <span class="highlight">OBLIGATOIRE</span> dès que vous êtes en ville.</p>
                 </div>
                 <div class="card">
-                    <h3>💰 Économie Réaliste</h3>
-                    <p>Le système financier du serveur est configuré pour refléter le coût de la vie américain. L'argent se mérite au travers des différents métiers légaux ou via l'économie souterraine contrôlée.</p>
+                    <h3>🔧 Évolution de votre personnage</h3>
+                    <p>Chaque scène vécue compte. Vous accumulez de l'expérience en jeu, bâtissez vos contacts et gagnez de l'argent afin de faire progresser votre statut social, votre entreprise ou votre influence dans les quartiers.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Fonctionnement du Discord -->
-    <section id="discord-info" class="section" style="background-color: #0d121b;">
+    <!-- Résumé du Discord -->
+    <section id="discord-summary" class="section" style="background-color: #0d121b;">
         <div class="container">
-            <h2 class="section-title">Comment fonctionne notre Discord ?</h2>
+            <h2 class="section-title">Guide & Résumé de notre Discord</h2>
             <p style="text-align: center; max-width: 800px; margin: -20px auto 40px auto; color: #a0aec0;">
-                Le serveur Discord est le cœur opérationnel de NEW YORK RP FR. C'est là-bas que tout se passe en dehors de la ville.
+                Notre serveur Discord est organisé de manière claire pour que vous trouviez tout ce dont vous avez besoin en un coup d'œil.
             </p>
             <div class="grid">
                 <div class="card">
-                    <h3>📢 Les Annonces & Sessions</h3>
-                    <p>C'est dans les salons d'annonces que le staff communique les nouveautés, les mises à jour et les planifications des sessions de jeu pour réunir la communauté.</p>
+                    <h3>📌 Salons d'Information</h3>
+                    <p><strong>#annonces & #reglement :</strong> Les espaces indispensables. Vous y trouverez les horaires des sessions, les mises à jour majeures du serveur, ainsi que les lois à respecter obligatoirement.</p>
                 </div>
                 <div class="card">
-                    <h3>📝 Demandes de Rôles & Salons</h3>
-                    <p>Une fois arrivé, passez par le salon de configuration des rôles pour accéder aux espaces qui vous intéressent (Citoyen, Légal, Criminel) et ouvrir vos salons de projets.</p>
+                    <h3>🎭 Salons de Rôles & Identité</h3>
+                    <p><strong>#choix-roles :</strong> Dès votre arrivée, ce salon vous permet de cocher vos préférences pour débloquer les accès citoyens, légaux ou criminels selon le type de jeu qui vous intéresse.</p>
                 </div>
                 <div class="card">
-                    <h3>🎟️ Système de Ticket / Support</h3>
-                    <p>Un problème en ville, une question sur le règlement ou un projet de gang à soumettre ? Ouvrez un ticket sur le Discord, notre équipe administrative vous prendra en charge rapidement.</p>
+                    <h3>🎟️ Salons d'Entraide (Tickets)</h3>
+                    <p><strong>#support-ticket :</strong> Un salon dédié pour ouvrir un ticket privé avec le Staff. Idéal pour poser une question, signaler un problème ou soumettre un projet écrit.</p>
                 </div>
-            </div>
-            <div style="text-align: center; margin-top: 40px;">
-                <a href="https://discord.gg/RMbDSbTsc" target="_blank" class="card-link">Accéder directement aux salons Discord →</a>
             </div>
         </div>
     </section>
 
-    <!-- Factions -->
-    <section id="factions" class="section">
+    <!-- Comment on se fait recruter -->
+    <section id="recrutement" class="section">
         <div class="container">
-            <h2 class="section-title">L'Équilibre des Factions</h2>
-            <div class="grid">
-                <div class="card" style="border-left: 4px solid #1e90ff;">
-                    <h3>🔵 Le Secteur Légal & Public</h3>
-                    <p>Regroupe la gestion des entreprises de la ville et les services d'urgence. De l'agent de patrouille sur le terrain jusqu'aux cadres administratifs, ce secteur encadre la vie des citoyens honnêtes et la sécurité publique.</p>
-                </div>
-                <div class="card" style="border-left: 4px solid #e74c3c;">
-                    <h3 class="red-title">🔴 Le Secteur Criminel</h3>
-                    <p>Qu'il s'agisse de gangs de quartier (Bloods, Crips) ou d'organisations privées, l'illégal est structuré pour amener de l'action en ville. Les projets criminels s'organisent et se déclarent directement via les salons Discord dédiés.</p>
-                </div>
-            </div>
+            <h2 class="section-title">Comment se faire recruter ?</h2>
+            <p style="text-align: center; max-width: 600px; margin: -20px auto 40px auto; color: #a0aec0;">
+                Voici le parcours simple pour intégrer officiellement nos différentes branches de jeu :
+            </p>
+            <ul class="steps">
+                <li>
+                    <strong>Étape 1 : Rejoindre le Discord</strong>
+                    Utilisez le lien officiel pour entrer sur le serveur Discord et validez le règlement général de la communauté.
+                </li>
+                <li>
+                    <strong>Étape 2 : Choisir sa filière via les Salons</strong>
+                    Dirigez-vous vers nos salons d'orientation sur Discord pour spécifier si vous postulez pour les Services Publics (Légal) ou si vous lancez un Projet Criminel (Gang/Orga).
+                </li>
+                <li>
+                    <strong>Étape 3 : Ouvrir un Ticket de Candidature</strong>
+                    Ouvrez un ticket dans le salon d'assistance. Le Staff ou les responsables de la faction concernée vous guideront pour soumettre votre histoire (Lore) ou passer vos entretiens et tests.
+                </li>
+            </ul>
         </div>
     </section>
 
